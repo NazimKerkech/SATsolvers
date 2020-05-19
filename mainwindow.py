@@ -4,6 +4,7 @@ from PySide2.QtGui import QIcon, QPixmap, QFont
 from PySide2.QtCore import QFile
 from topui import TopUi
 from bottomui import BottomUi
+import time
 import sys
 
 
@@ -17,7 +18,7 @@ class MainWindow(QMainWindow):
         # Creation des Frames
         vbox = QtWidgets.QVBoxLayout()
 
-        tramesup = TopUi(self)                                     # Frame supperieur
+        tramesup = TopUi(self, self)                                     # Frame supperieur
         tramesup.setMinimumSize(QtCore.QSize(0, 65))
         tramesup.setMaximumSize(QtCore.QSize(1700, 65))
 
@@ -33,6 +34,7 @@ class MainWindow(QMainWindow):
         buff.setLayout(vbox)
 
         self.setCentralWidget(buff)
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 
 
 # Initialisation de la fiche de style qss
@@ -51,4 +53,5 @@ window.resize(available_geometry.width() * 2 / 3, available_geometry.height() * 
 window.show()
 
 myApp.exec_()
+
 sys.exit()

@@ -1,6 +1,7 @@
 from PySide2 import QtGui, QtWidgets, QtCore
-from PySide2.QtWidgets import QApplication, QWidget, QLabel, QToolTip, QPushButton, QMessageBox, QDesktopWidget, QMainWindow, QFrame
+from PySide2.QtWidgets import QApplication, QWidget, QLabel, QToolTip, QPushButton, QMessageBox, QDesktopWidget, QMainWindow, QFrame, QSizePolicy
 from PySide2.QtGui import QIcon, QPixmap, QFont
+from PySide2.QtCore import QCoreApplication, Qt, QSize
 from middleui import MiddleUi
 import sys
 
@@ -14,16 +15,48 @@ class BottomUi(QFrame):
         vbox_barreLater.setContentsMargins(0, 0, 0, 0)          # Configuration du layout
         vbox_barreLater.setSpacing(0)
 
-        self.barreLater_frame = QFrame()                             # Enrobage de la barre laterale dans une frame
-        self.barreLater_frame.setLayout(vbox_barreLater)
-        self.barreLater_frame.setFrameShape(QFrame.Box)
+        bouton_box = QtWidgets.QVBoxLayout()
+        bouton_box.setContentsMargins(0, 0, 0, 0)
+        bouton_box.setSpacing(0)
 
-        self.barreLater_frame.setMaximumSize(65, 1700)
-        self.barreLater_frame.setMinimumSize(65, 0)
+        button_frame = QFrame()
+
+        # Bouttons
+        self.home = QPushButton()                                     # Home
+        self.home.setObjectName("home")
+        self.home.setMaximumHeight(70)
+        self.home.clicked.connect(self.go_to_home)
+        bouton_box.addWidget(self.home)
+
+        self.algorithmes = QPushButton()                               # Algorithmes
+        self.algorithmes.setObjectName("algorithmes")
+        self.algorithmes.setMinimumHeight(70)
+        self.algorithmes.clicked.connect(self.aller_a_algorithmes)
+        bouton_box.addWidget(self.algorithmes)
+
+        self.heuristiques = QPushButton()                                # Heuristiques
+        self.heuristiques.setObjectName("heuristiques")
+        self.heuristiques.setMinimumHeight(70)
+        self.heuristiques.clicked.connect(self.aller_a_heuristiques)
+        bouton_box.addWidget(self.heuristiques)
+
+        button_frame.setLayout(bouton_box)
+        button_frame.setMaximumHeight(210)
+
+        button_frame_complementaire = QFrame()
+
+        vbox_barreLater.addWidget(button_frame)
+        vbox_barreLater.addWidget(button_frame_complementaire)
+
+        self.barreLater_frame = QFrame()                             # Enrobage de la barre laterale dans une frame
+        self.barreLater_frame.setFrameShape(QFrame.NoFrame)
+        self.barreLater_frame.setLayout(vbox_barreLater)
+
+        self.barreLater_frame.setMaximumSize(70, 1700)
+        self.barreLater_frame.setMinimumSize(70, 0)
 
         # Partie principale
-        frame_principale = MiddleUi(self)
-        frame_principale.setFrameShape(QFrame.Box)
+        self.frame_principale = MiddleUi(self)
 
         # Grip
         label_credits = QtWidgets.QLabel()
@@ -40,11 +73,11 @@ class BottomUi(QFrame):
         grip_frame = QFrame()                                   # Enrobage de la grip dans une frame
         grip_frame.setLayout(hbox_grip)
         grip_frame.setMaximumSize(1700, 20)
-        grip_frame.setFrameShape(QFrame.Box)
+        grip_frame.setFrameShape(QFrame.NoFrame)
 
         # Unification de la partie centrale (partie principale + grip)
         vbox_centre = QtWidgets.QVBoxLayout()
-        vbox_centre.addWidget(frame_principale)
+        vbox_centre.addWidget(self.frame_principale)
         vbox_centre.addWidget(grip_frame)
 
         vbox_centre.setContentsMargins(0, 0, 0, 0)              # Configuration du layout
@@ -53,7 +86,7 @@ class BottomUi(QFrame):
         centre_frame = QFrame()                                 # Enrobage dans une frame
         centre_frame.setLayout(vbox_centre)
 
-        centre_frame.setFrameShape(QFrame.Box)
+        centre_frame.setFrameShape(QFrame.NoFrame)
 
         # Unification
         hbox_bottom = QtWidgets.QHBoxLayout()
@@ -65,4 +98,17 @@ class BottomUi(QFrame):
         hbox_bottom.setSpacing(0)
 
         self.setLayout(hbox_bottom)
-        self.setFrameShape(QFrame.Box)
+
+        self.setFrameShape(QFrame.NoFrame)
+
+    def go_to_home(self):
+        if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.home:
+            self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.home)
+
+    def aller_a_algorithmes(self):
+        if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.algorithmes_menu:
+            self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.algorithmes_menu)
+
+    def aller_a_heuristiques(self):
+        if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.heuristiques_menu:
+            self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.heuristiques_menu)

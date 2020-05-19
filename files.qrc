@@ -1,13 +1,14 @@
 <RCC>
-  <qresource prefix="16x16">
-    <file>icons/16x16/cil-cursor-move.png</file>
-    <file>icons/16x16/cil-menu.png</file>
-    <file>icons/16x16/cil-window-maximize.png</file>
-    <file>icons/16x16/cil-window-minimize.png</file>
-    <file>icons/16x16/cil-window-restore.png</file>
-    <file>icons/16x16/cil-x.png</file>
-    <file>icons/16x16/cil-home.png</file>
-    <file>icons/16x16/cil-settings.png</file>
-    <file>icons/16x16/go_arrow_next_up_green_forward-512.png</file>
-  </qresource>
+  <file>icons/16x16/cil-cursor-move.png</file>
+  <file>icons/16x16/cil-menu.png</file>
+  <file>icons/16x16/cil-window-maximize.png</file>
+  <file>icons/16x16/cil-window-minimize.png</file>
+  <file>icons/16x16/cil-window-restore.png</file>
+  <file>icons/16x16/cil-x.png</file>
+  <file>icons/16x16/cil-home.png</file>
+  <file>icons/16x16/cil-settings.png</file>
+  <file>icons/16x16/hiclipart.com.png</file>
+  <file>icons/16x16/play-line.png</file>
+  <file>icons/16x16/skip-forward-mini-line.png</file>
+  <file>icons/16x16/file-paper-2-line.png</file>
 </RCC>

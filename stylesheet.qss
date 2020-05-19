@@ -1,6 +1,5 @@
 QMainWindow {
-  background: transparent;
-  color: rgb(210, 210, 210);
+  background-color: rgb(30, 30, 30)
 }
 
 QToolTip {
@@ -12,10 +11,94 @@ QFrame#frame_barresSup {
   background: transparent;
 }
 
+MiddleUi {
+  background-color: rgb(30, 30, 30)
+}
+
 QPushButton {
   background-position: center;
   background-repeat: no-reperat;
   border: none;
+}
+QFrame#barreDActions_frame{
+  background-color: transparent;
+}
+
+QPushButton#home {
+  background-image: url(icons/16x16/home-3-line.png);
+  background-color: transparent;
+  background-position: left center;
+  color: white;
+  border-left: 28px solid rgb(30, 30, 30);
+  text-align: left;
+  padding-left: 45px;
+}
+QPushButton:hover#home {
+  background-color: rgb(35, 35, 35);
+  border-left: 28px solid rgb(35, 35, 35);
+}
+QPushButton:pressed#home {
+  background-color: rgb(45, 45, 45);
+  border-left: 28px solid rgb(45, 45, 45);
+}
+
+QPushButton#algorithmes {
+  background-image: url(icons/16x16/file-paper-2-line.png);
+  background-position: left center;
+  color: white;
+  border-left: 28px solid rgb(30, 30, 30);
+  text-align: left;
+  padding-left: 45px;
+  background-color: transparent;
+}
+QPushButton:hover#algorithmes {
+  background-color: rgb(35, 35, 35);
+  border-left: 28px solid rgb(35, 35, 35);
+
+}
+QPushButton:pressed#algorithmes {
+  background-color: rgb(45, 45, 45);
+  border-left: 28px solid rgb(45, 45, 45);
+}
+
+QPushButton#heuristiques {
+  background-image: url(icons/16x16/hiclipart.com.png);
+  background-position: left center;
+  color: white;
+  border-left: 28px solid rgb(30, 30, 30);
+  text-align: left;
+  padding-left: 45px;
+  background-color: transparent;
+}
+QPushButton:hover#heuristiques {
+  background-color: rgb(35, 35, 35);
+  border-left: 28px solid rgb(35, 35, 35);
+}
+QPushButton:pressed#heuristiques {
+  background-color: rgb(45, 45, 45);
+  border-left: 28px solid rgb(45, 45, 45);
+}
+
+QPushButton#execution_pas_a_pas {
+  background-image: url(icons/16x16/skip-forward-mini-line.png);
+  background-color: transparent;
+}
+QPushButton:hover#execution_pas_a_pas {
+  background-color: rgb(35, 35, 35);
+}
+QPushButton:pressed#execution_pas_a_pas {
+  background-color: rgb(45, 45, 45);
+}
+
+QPushButton#execution {
+  background-image: url(icons/16x16/play-line.png);
+  background-color: transparent;
+}
+QPushButton:hover#execution {
+  background-color: rgb(35, 35, 35);
+}
+QPushButton:pressed#execution {
+  background-color: rgb(45, 45, 45);
 }
 
 QPushButton#button_toggle_menu {
@@ -40,14 +123,14 @@ QPushButton:pressed#btn_minimize {
   background-color: rgb(45, 45, 45);
 }
 
-QPushButton#btn_Maximize {
+QPushButton#btn_maximize_restore {
   background-image: url(:/16x16/icons/16x16/cil-window-maximize.png);
   background-color: transparent;
 }
-QPushButton:hover#btn_Maximize {
+QPushButton:hover#btn_maximize_restore {
   background-color: rgb(35, 35, 35);
 }
-QPushButton:pressed#btn_Maximize {
+QPushButton:pressed#btn_maximize_restore {
   background-color: rgb(45, 45, 45);
 }
 
