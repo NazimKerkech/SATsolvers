@@ -66,7 +66,7 @@ class BottomUi(QFrame):
 
         # Grip
         label_credits = QtWidgets.QLabel()
-        label_credits.setText("Moi")
+        label_credits.setText("")
         label_version = QtWidgets.QLabel()
         label_version.setText("Version : 0.1")
 
