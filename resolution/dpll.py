@@ -1,13 +1,15 @@
 from copy import deepcopy
 from random import random
-import main
 import instance_creation
 import resolution.propagation_unitaire as pu
 import global_module
 
 
-def dpll(f):
+def dpll(f, wind):
+    global formule
     global sdp                          # sdp est la sequence de decisio-propagation faite par l'algorithme
+
+    wind.trameinf.frame_principale.affichage.afficher(f.__str__())
 
     g = pu.propoagation_unitaire(f)     # Execution de la propagation unitaire
     global_module.sdp.append(g)         # Mise a jour de la SD-P apres la propagation de contraintes
@@ -32,4 +34,4 @@ def dpll(f):
     f2 = deepcopy(f)
     f2.clauses |= {instance_creation.Clause({-l})}
 
-    return dpll(f1) or dpll(f2)
+    return dpll(f1, wind) or dpll(f2, wind)

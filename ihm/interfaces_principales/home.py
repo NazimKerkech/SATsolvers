@@ -1,4 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
+
+import global_module
 from  instance_creation import *
 
 class Home(QtWidgets.QFrame):
@@ -15,7 +17,11 @@ class Home(QtWidgets.QFrame):
         open_file_button.clicked.connect(self.openFile)
 
     def openFile(self):
+        global formule
+
         fileName = QtWidgets.QFileDialog.getOpenFileName(self, "open file", "",  "formule file (*.cnf)")
         self.appelant.interface_principale.setCurrentWidget(self.appelant.affichage_frame)
-        formule = Formule(fileName[0])
-        self.appelant.affichage.afficher(formule)
+        global_module.formule = Formule(fileName[0])
+        self.appelant.affichage.afficher(global_module.formule.__str__())
+
+

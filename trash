@@ -1,0 +1,8 @@
+from copy import deepcopy
+from typing import List, Any
+
+from ihm.mainwindow import *
+import instance_creation
+import resolution.dpll
+import global_module
+import sys

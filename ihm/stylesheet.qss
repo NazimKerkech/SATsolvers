@@ -2,6 +2,11 @@ QMainWindow {
   background-color: rgb(30, 30, 30)
 }
 
+QToolTip {
+  color: #ffffff;
+  background-color: rgba(27, 29, 35, 160);
+  border: 1px solid rgb(100, 100, 100);
+}
 QFrame#frame_barresSup {
   background: transparent;
 }

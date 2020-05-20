@@ -9,17 +9,17 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
-        self.setWindowTitle("Assistant graphique pour SAT")    # Initialisation du titre
+        self.setWindowTitle("Assistant graphique pour SAT")  # Initialisation du titre
         self.setWindowIcon(QtGui.QIcon("ihm//icons/16x16/kangaroo-icon.png"))
 
         # Creation des Frames
         vbox = QtWidgets.QVBoxLayout()
 
-        tramesup = TopUi(self, self)                                     # Frame supperieur
+        tramesup = TopUi(self, self)  # Frame supperieur
         tramesup.setMinimumSize(QtCore.QSize(0, 65))
         tramesup.setMaximumSize(QtCore.QSize(1700, 65))
 
-        self.trameinf = BottomUi(self, self)                                  # Frame inferieur
+        self.trameinf = BottomUi(self, self)  # Frame inferieur
 
         # Unification
         vbox.addWidget(tramesup)
@@ -38,5 +38,15 @@ class MainWindow(QMainWindow):
         StyleSheet = style.read()
         self.setStyleSheet(StyleSheet)
 
-    def fermer(self):
-        sys.exit()
+
+# Instanciation de QApp
+myApp = QApplication(sys.argv)
+
+window = MainWindow()
+
+available_geometry = myApp.desktop().availableGeometry(window)
+window.resize(available_geometry.width() * 2 / 3, available_geometry.height() * 2 / 3)
+
+window.show()
+myApp.exec_()
+sys.exit()

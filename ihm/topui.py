@@ -2,7 +2,7 @@ import time
 import PySide2
 from PySide2 import QtGui, QtWidgets, QtCore
 from PySide2.QtWidgets import QLabel, QPushButton, QFrame, QSizePolicy
-
+import resolution.dpll, global_module
 globals()['state'] = 0
 globals()['titleBar'] = True
 
@@ -250,7 +250,8 @@ class TopUi(QFrame):
         self.mainWindow.showMinimized()
 
     def executer(self):
-        for i in range(5):
-            self.mainWindow.trameinf.frame_principale.affichage.afficher("ligne " + i.__str__())
-            time.sleep(1)
-
+        global formule
+        global sdp
+        resolution.dpll.dpll(global_module.formule, self.mainWindow)
+        print(global_module.sdp)
+        self.mainWindow.trameinf.frame_principale.affichage.sdp.append(global_module.sdp.__str__())
