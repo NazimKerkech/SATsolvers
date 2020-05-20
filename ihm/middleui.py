@@ -1,14 +1,20 @@
-from PySide2 import QtGui, QtWidgets, QtCore
-from PySide2.QtWidgets import QApplication, QWidget, QLabel, QToolTip, QPushButton, QMessageBox, QDesktopWidget, QMainWindow, QFrame
-from PySide2.QtGui import QIcon, QPixmap, QFont
-from interfaces_principales.traitements import *
-import sys
+from PySide2 import QtWidgets
+from PySide2.QtWidgets import QFrame
+from ihm.interfaces_principales.traitements import *
+from ihm.interfaces_principales.home import *
+
 
 class MiddleUi(QFrame):
-    def __init__(self, parent):
+    def __init__(self, parent, appelant):
         super().__init__(parent)
 
-        # Home onglets
+        self.appelant = appelant
+
+        # Home
+        self.home = Home(self, self)
+        self.home.setObjectName("home")
+
+        # Affichage onglets
         self.affichage = Traitements(self)
         self.affichage.setFrameShape(QFrame.NoFrame)
         infos_heuristique = QFrame()
@@ -25,15 +31,16 @@ class MiddleUi(QFrame):
         box_onglets.setSpacing(0)
 
         # Interface_principale StackWidget
-        self.home = QFrame()
+        self.affichage_frame = QFrame()
         self.algorithmes_menu = QFrame()
         self.heuristiques_menu = QFrame()
 
-        self.home.setLayout(box_onglets)                            # Enrobage des onglets home dans une frame
+        self.affichage_frame.setLayout(box_onglets)                            # Enrobage des onglets affichage_principal dans une frame
 
         self.interface_principale = QtWidgets.QStackedWidget()      # Creation de l'interface principale (StackWidget)
 
         self.interface_principale.addWidget(self.home)
+        self.interface_principale.addWidget(self.affichage_frame)
         self.interface_principale.addWidget(self.algorithmes_menu)
         self.interface_principale.addWidget(self.heuristiques_menu)
 

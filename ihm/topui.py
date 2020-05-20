@@ -1,10 +1,7 @@
 import time
 import PySide2
 from PySide2 import QtGui, QtWidgets, QtCore
-from PySide2.QtWidgets import QApplication, QWidget, QLabel, QToolTip, QPushButton, QMessageBox, QDesktopWidget, QMainWindow, QFrame, QSizePolicy
-from PySide2.QtGui import QIcon, QPixmap, QFont
-import files_rc
-import sys
+from PySide2.QtWidgets import QLabel, QPushButton, QFrame, QSizePolicy
 
 globals()['state'] = 0
 globals()['titleBar'] = True
@@ -146,6 +143,7 @@ class TopUi(QFrame):
         vbox_barresSup.setSpacing(0)
 
         self.frame_barresSup = QFrame()                                     # Enrobage dans une frame
+        self.frame_barresSup.setObjectName("frame_barresSup")
         self.frame_barresSup.setFrameShape(QFrame.NoFrame)
         self.frame_barresSup.setObjectName("frame_barresSup")
         self.frame_barresSup.setLayout(vbox_barresSup)
@@ -197,12 +195,14 @@ class TopUi(QFrame):
         # SET MAX WIDTH
         if width == 70:
             widthExtended = maxExtend
-            self.mainWindow.trameinf.home.setText("home")
-            self.mainWindow.trameinf.algorithmes.setText("algorithmes")
-            self.mainWindow.trameinf.heuristiques.setText("heuristiques")
+            self.mainWindow.trameinf.home_button.setText("Home")
+            self.mainWindow.trameinf.affichage_principal.setText("Show")
+            self.mainWindow.trameinf.algorithmes.setText("Algorithmes")
+            self.mainWindow.trameinf.heuristiques.setText("Heuristiques")
         else:
             widthExtended = standard
-            self.mainWindow.trameinf.home.setText("")
+            self.mainWindow.trameinf.home_button.setText("")
+            self.mainWindow.trameinf.affichage_principal.setText("")
             self.mainWindow.trameinf.algorithmes.setText("")
             self.mainWindow.trameinf.heuristiques.setText("")
 

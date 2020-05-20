@@ -2,13 +2,30 @@ QMainWindow {
   background-color: rgb(30, 30, 30)
 }
 
-QToolTip {
-  color: #ffffff;
-  background-color: rgba(27, 29, 35, 160);
-  border: 1px solid rgb(100, 100, 100);
-}
 QFrame#frame_barresSup {
   background: transparent;
+}
+
+ihm.interfaces_principales.home.Home#home {
+    background-color: midnightblue
+}
+
+QPushButton#open_file_button {
+  background-image: url(ihm/icons/16x16/file-2-line.png);
+  background-color: transparent;
+  background-position: left center;
+  color: white;
+  border-left: 28px solid rgb(30, 30, 30);
+  text-align: left;
+  padding-left: 45px;
+}
+QPushButton:hover#open_file_button {
+  background-color: rgb(35, 35, 35);
+  border-left: 28px solid rgb(35, 35, 35);
+}
+QPushButton:pressed#open_file_button {
+  background-color: rgb(45, 45, 45);
+  border-left: 28px solid rgb(45, 45, 45);
 }
 
 MiddleUi {
@@ -24,8 +41,8 @@ QFrame#barreDActions_frame{
   background-color: transparent;
 }
 
-QPushButton#home {
-  background-image: url(icons/16x16/home-3-line.png);
+QPushButton#home_button {
+  background-image: url(ihm/icons/16x16/home-3-line.png);
   background-color: transparent;
   background-position: left center;
   color: white;
@@ -33,17 +50,35 @@ QPushButton#home {
   text-align: left;
   padding-left: 45px;
 }
-QPushButton:hover#home {
+QPushButton:hover#home_button {
   background-color: rgb(35, 35, 35);
   border-left: 28px solid rgb(35, 35, 35);
 }
-QPushButton:pressed#home {
+QPushButton:pressed#home_button {
+  background-color: rgb(45, 45, 45);
+  border-left: 28px solid rgb(45, 45, 45);
+}
+
+QPushButton#affichage_principal {
+  background-image: url(ihm/icons/16x16/projector-line.png);
+  background-color: transparent;
+  background-position: left center;
+  color: white;
+  border-left: 28px solid rgb(30, 30, 30);
+  text-align: left;
+  padding-left: 45px;
+}
+QPushButton:hover#affichage_principal {
+  background-color: rgb(35, 35, 35);
+  border-left: 28px solid rgb(35, 35, 35);
+}
+QPushButton:pressed#affichage_principal {
   background-color: rgb(45, 45, 45);
   border-left: 28px solid rgb(45, 45, 45);
 }
 
 QPushButton#algorithmes {
-  background-image: url(icons/16x16/file-paper-2-line.png);
+  background-image: url(ihm/icons/16x16/file-paper-2-line.png);
   background-position: left center;
   color: white;
   border-left: 28px solid rgb(30, 30, 30);
@@ -62,7 +97,7 @@ QPushButton:pressed#algorithmes {
 }
 
 QPushButton#heuristiques {
-  background-image: url(icons/16x16/hiclipart.com.png);
+  background-image: url(ihm/icons/16x16/hiclipart.com.png);
   background-position: left center;
   color: white;
   border-left: 28px solid rgb(30, 30, 30);
@@ -80,7 +115,7 @@ QPushButton:pressed#heuristiques {
 }
 
 QPushButton#execution_pas_a_pas {
-  background-image: url(icons/16x16/skip-forward-mini-line.png);
+  background-image: url(ihm/icons/16x16/skip-forward-mini-line.png);
   background-color: transparent;
 }
 QPushButton:hover#execution_pas_a_pas {
@@ -91,7 +126,7 @@ QPushButton:pressed#execution_pas_a_pas {
 }
 
 QPushButton#execution {
-  background-image: url(icons/16x16/play-line.png);
+  background-image: url(ihm/icons/16x16/play-line.png);
   background-color: transparent;
 }
 QPushButton:hover#execution {
@@ -102,7 +137,7 @@ QPushButton:pressed#execution {
 }
 
 QPushButton#button_toggle_menu {
-  background-image: url(:/16x16/icons/16x16/cil-menu.png);
+  background-image: url(ihm/icons/16x16/cil-menu.png);
   background-color: rgb(30, 30, 30);
 }
 QPushButton:hover#button_toggle_menu {
@@ -113,7 +148,7 @@ QPushButton:pressed#button_toggle_menu {
 }
 
 QPushButton#btn_minimize {
-  background-image: url(:/16x16/icons/16x16/cil-window-minimize.png);
+  background-image: url(ihm/icons/16x16/cil-window-minimize.png);
   background-color: transparent;
 }
 QPushButton:hover#btn_minimize {
@@ -124,7 +159,7 @@ QPushButton:pressed#btn_minimize {
 }
 
 QPushButton#btn_maximize_restore {
-  background-image: url(:/16x16/icons/16x16/cil-window-maximize.png);
+  background-image: url(ihm/icons/16x16/cil-window-maximize.png);
   background-color: transparent;
 }
 QPushButton:hover#btn_maximize_restore {
@@ -135,7 +170,7 @@ QPushButton:pressed#btn_maximize_restore {
 }
 
 QPushButton#btn_close {
-  background-image: url(:/16x16/icons/16x16/cil-x.png);
+  background-image: url(ihm/icons/16x16/cil-x.png);
   background-color: transparent;
 }
 QPushButton:hover#btn_close {

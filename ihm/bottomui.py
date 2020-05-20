@@ -1,13 +1,13 @@
-from PySide2 import QtGui, QtWidgets, QtCore
-from PySide2.QtWidgets import QApplication, QWidget, QLabel, QToolTip, QPushButton, QMessageBox, QDesktopWidget, QMainWindow, QFrame, QSizePolicy
-from PySide2.QtGui import QIcon, QPixmap, QFont
-from PySide2.QtCore import QCoreApplication, Qt, QSize
-from middleui import MiddleUi
-import sys
+from PySide2 import QtWidgets
+from PySide2.QtWidgets import QPushButton, QFrame
+from ihm.middleui import MiddleUi
+
 
 class BottomUi(QFrame):
-    def __init__(self, parent):
+    def __init__(self, parent, appelant):
         super().__init__(parent)
+
+        self.mainWindow = appelant
 
         # Barre laterale
         vbox_barreLater = QtWidgets.QVBoxLayout()
@@ -22,11 +22,17 @@ class BottomUi(QFrame):
         button_frame = QFrame()
 
         # Bouttons
-        self.home = QPushButton()                                     # Home
-        self.home.setObjectName("home")
-        self.home.setMaximumHeight(70)
-        self.home.clicked.connect(self.go_to_home)
-        bouton_box.addWidget(self.home)
+        self.home_button = QPushButton()                                     # Home
+        self.home_button.setObjectName("home_button")
+        self.home_button.setMaximumHeight(70)
+        self.home_button.clicked.connect(self.go_to_home)
+        bouton_box.addWidget(self.home_button)
+
+        self.affichage_principal = QPushButton()                                     # Show
+        self.affichage_principal.setObjectName("affichage_principal")
+        self.affichage_principal.setMaximumHeight(70)
+        self.affichage_principal.clicked.connect(self.aller_a_affichage_principal)
+        bouton_box.addWidget(self.affichage_principal)
 
         self.algorithmes = QPushButton()                               # Algorithmes
         self.algorithmes.setObjectName("algorithmes")
@@ -41,7 +47,7 @@ class BottomUi(QFrame):
         bouton_box.addWidget(self.heuristiques)
 
         button_frame.setLayout(bouton_box)
-        button_frame.setMaximumHeight(210)
+        button_frame.setMaximumHeight(280)
 
         button_frame_complementaire = QFrame()
 
@@ -56,7 +62,7 @@ class BottomUi(QFrame):
         self.barreLater_frame.setMinimumSize(70, 0)
 
         # Partie principale
-        self.frame_principale = MiddleUi(self)
+        self.frame_principale = MiddleUi(self, self)
 
         # Grip
         label_credits = QtWidgets.QLabel()
@@ -104,6 +110,10 @@ class BottomUi(QFrame):
     def go_to_home(self):
         if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.home:
             self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.home)
+
+    def aller_a_affichage_principal(self):
+        if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.affichage_frame:
+            self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.affichage_frame)
 
     def aller_a_algorithmes(self):
         if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.algorithmes_menu:
