@@ -1,8 +1,7 @@
-import time
 import PySide2
 from PySide2 import QtGui, QtWidgets, QtCore
 from PySide2.QtWidgets import QLabel, QPushButton, QFrame, QSizePolicy
-import resolution.dpll, global_module
+import algorithmes.resolution.dpll, global_module
 globals()['state'] = 0
 globals()['titleBar'] = True
 
@@ -197,14 +196,16 @@ class TopUi(QFrame):
             widthExtended = maxExtend
             self.mainWindow.trameinf.home_button.setText("Home")
             self.mainWindow.trameinf.affichage_principal.setText("Show")
-            self.mainWindow.trameinf.algorithmes.setText("Algorithmes")
-            self.mainWindow.trameinf.heuristiques.setText("Heuristiques")
+            self.mainWindow.trameinf.parametres.setText("Parametres")
+            """self.mainWindow.trameinf.algorithmes.setText("Algorithmes")
+            self.mainWindow.trameinf.heuristiques.setText("Heuristiques")"""
         else:
             widthExtended = standard
             self.mainWindow.trameinf.home_button.setText("")
             self.mainWindow.trameinf.affichage_principal.setText("")
-            self.mainWindow.trameinf.algorithmes.setText("")
-            self.mainWindow.trameinf.heuristiques.setText("")
+            self.mainWindow.trameinf.parametres.setText("")
+            """self.mainWindow.trameinf.algorithmes.setText("")
+            self.mainWindow.trameinf.heuristiques.setText("")"""
 
         self.animation = QtCore.QPropertyAnimation(self.mainWindow.trameinf.barreLater_frame, b"minimumWidth")
         self.animation.setDuration(300)
@@ -252,6 +253,9 @@ class TopUi(QFrame):
     def executer(self):
         global formule
         global sdp
-        resolution.dpll.dpll(global_module.formule, self.mainWindow)
+        global algorithmes
+        print(global_module.algorithmes)
+        #if al
+        algorithmes.resolution.dpll.dpll(global_module.formule, self.mainWindow)
         print(global_module.sdp)
         self.mainWindow.trameinf.frame_principale.affichage.sdp.append(global_module.sdp.__str__())

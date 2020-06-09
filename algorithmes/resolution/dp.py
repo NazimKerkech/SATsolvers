@@ -1,7 +1,5 @@
-from copy import deepcopy
-
 from instance_creation import *
-from resolution.techniques_de_resolution import *
+from algorithmes.resolution.techniques_de_resolution import *
 
 
 def dp(f):

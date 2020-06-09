@@ -1,7 +1,6 @@
 from copy import deepcopy
-from random import random
 import instance_creation
-import resolution.propagation_unitaire as pu
+import algorithmes.resolution.propagation_unitaire as pu
 import global_module
 
 
@@ -20,7 +19,7 @@ def dpll(f, wind):
         if len(c.litteraux) == 0:
             return False
 
-    l = f.atm.index(max(f.atm)) + 1     # HEURISTIQUE : selection de l'atome le plus occurent
+    l = f.atm.index(max(f.atm)) + 1     # HEURISTIQUE : selection_algo de l'atome le plus occurent
     if f.atm_neg[l - 1] > f.atm_pos[l - 1]:
         l = -l
 

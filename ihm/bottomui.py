@@ -34,7 +34,7 @@ class BottomUi(QFrame):
         self.affichage_principal.clicked.connect(self.aller_a_affichage_principal)
         bouton_box.addWidget(self.affichage_principal)
 
-        self.algorithmes = QPushButton()                               # Algorithmes
+        """self.algorithmes = QPushButton()                               # Algorithmes
         self.algorithmes.setObjectName("algorithmes")
         self.algorithmes.setMinimumHeight(70)
         self.algorithmes.clicked.connect(self.aller_a_algorithmes)
@@ -44,10 +44,16 @@ class BottomUi(QFrame):
         self.heuristiques.setObjectName("heuristiques")
         self.heuristiques.setMinimumHeight(70)
         self.heuristiques.clicked.connect(self.aller_a_heuristiques)
-        bouton_box.addWidget(self.heuristiques)
+        bouton_box.addWidget(self.heuristiques)"""
+
+        self.parametres = QPushButton()  # Heuristiques
+        self.parametres.setObjectName("parametres")
+        self.parametres.setMinimumHeight(70)
+        self.parametres.clicked.connect(self.aller_a_parametres)
+        bouton_box.addWidget(self.parametres)
 
         button_frame.setLayout(bouton_box)
-        button_frame.setMaximumHeight(280)
+        button_frame.setMaximumHeight(210)
 
         button_frame_complementaire = QFrame()
 
@@ -63,6 +69,7 @@ class BottomUi(QFrame):
 
         # Partie principale
         self.frame_principale = MiddleUi(self, self)
+        self.frame_principale.setObjectName("frame_principale")
 
         # Grip
         label_credits = QtWidgets.QLabel()
@@ -110,15 +117,24 @@ class BottomUi(QFrame):
     def go_to_home(self):
         if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.home:
             self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.home)
+            #self.home_button.setStyleSheet("color: red")
 
     def aller_a_affichage_principal(self):
         if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.affichage_frame:
             self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.affichage_frame)
+            #self.affichage_principal.setStyleSheet("color: red")
 
     def aller_a_algorithmes(self):
         if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.algorithmes_menu:
             self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.algorithmes_menu)
+            #self.algorithmes.setStyleSheet("color: red")
 
     def aller_a_heuristiques(self):
         if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.heuristiques_menu:
             self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.heuristiques_menu)
+            #self.heuristiques.setStyleSheet("color: red")
+
+    def aller_a_parametres(self):
+        if self.frame_principale.interface_principale.currentWidget() != self.frame_principale.parametres_menu:
+            self.frame_principale.interface_principale.setCurrentWidget(self.frame_principale.parametres_menu)
+            #self.heuristiques.setStyleSheet("color: red")

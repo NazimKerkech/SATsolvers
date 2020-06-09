@@ -11,9 +11,15 @@ QFrame#frame_barresSup {
   background: transparent;
 }
 
-ihm.interfaces_principales.home.Home#home {
-    background-color: midnightblue
+QFrame#frame_principale{
+  background: transparent;
 }
+
+QFrame#home {
+    background-color: transparent;
+}
+
+
 
 QPushButton#open_file_button {
   background-image: url(ihm/icons/16x16/file-2-line.png);
@@ -35,6 +41,29 @@ QPushButton:pressed#open_file_button {
 
 MiddleUi {
   background-color: rgb(30, 30, 30)
+}
+
+QPushButton#plus_heuristique {
+  background-image: url(ihm/icons/16x16/add-line.png);
+  background-color: transparent;
+  color: white;
+}
+QPushButton:hover#plus_heuristique {
+  background-color: rgb(35, 35, 35);
+}
+QPushButton:pressed#plus_heuristique {
+  background-color: rgb(45, 45, 45);
+}
+QPushButton#plus_algo {
+  background-image: url(ihm/icons/16x16/add-line.png);
+  background-color: transparent;
+  color: white;
+}
+QPushButton:hover#plus_algo {
+  background-color: rgb(35, 35, 35);
+}
+QPushButton:pressed#plus_algo {
+  background-color: rgb(45, 45, 45);
 }
 
 QPushButton {
@@ -78,6 +107,24 @@ QPushButton:hover#affichage_principal {
   border-left: 28px solid rgb(35, 35, 35);
 }
 QPushButton:pressed#affichage_principal {
+  background-color: rgb(45, 45, 45);
+  border-left: 28px solid rgb(45, 45, 45);
+}
+
+QPushButton#parametres {
+  background-image: url(ihm/icons/16x16/cil-settings.png);
+  background-color: transparent;
+  background-position: left center;
+  color: white;
+  border-left: 28px solid rgb(30, 30, 30);
+  text-align: left;
+  padding-left: 45px;
+}
+QPushButton:hover#parametres {
+  background-color: rgb(35, 35, 35);
+  border-left: 28px solid rgb(35, 35, 35);
+}
+QPushButton:pressed#parametres {
   background-color: rgb(45, 45, 45);
   border-left: 28px solid rgb(45, 45, 45);
 }

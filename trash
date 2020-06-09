@@ -6,3 +6,141 @@ import instance_creation
 import resolution.dpll
 import global_module
 import sys
+
+from PySide2 import QtWidgets
+from copy import deepcopy, copy
+import global_module
+
+class Parametres(QtWidgets.QFrame):
+    def __init__(self, parent, appelant):
+        super().__init__(parent)
+
+        self.appelant = appelant
+
+        algo_label = QtWidgets.QLabel("Algorithme : ")
+        algo_label.setFixedHeight(50)
+        heur_label = QtWidgets.QLabel("Heuristique : ")
+        heur_label.setFixedHeight(50)
+
+        # Algo combo box
+        self.selection_algo = QtWidgets.QComboBox(self)
+        self.selection_algo.setObjectName("selection_algo")
+        self.selection_algo.addItem("dpll")
+        self.selection_algo.addItem("ennumeration")
+        self.selection_algo.currentTextChanged.connect(self.combo_changed)
+        self.selection_algo.setFixedWidth(200)
+
+        # Heuristique combo box
+        self.selection_heuristique = QtWidgets.QComboBox(self)
+        self.selection_heuristique.setObjectName("selection_heuristique")
+        self.selection_heuristique.setFixedWidth(200)
+
+        hbox = QtWidgets.QHBoxLayout()
+
+        self.vbox_alg = QtWidgets.QVBoxLayout()
+        frame_alg = QtWidgets.QFrame()
+
+        self.vbox_heur = QtWidgets.QVBoxLayout()
+        frame_heur = QtWidgets.QFrame()
+
+        self.vbox_alg.addWidget(algo_label)
+        self.vbox_alg.addWidget(self.selection_algo)
+        self.cfal = QtWidgets.QFrame()
+        self.vbox_alg.addWidget(self.cfal)
+        self.vbox_alg.setSpacing(0)
+        self.vbox_alg.setContentsMargins(20, 20, 20, 20)
+        frame_alg.setLayout(self.vbox_alg)
+
+        self.vbox_heur.addWidget(algo_label)
+        self.vbox_heur.addWidget(self.selection_algo)
+        self.cfheu = QtWidgets.QFrame()
+        self.vbox_alg.addWidget(self.cfheu)
+        self.vbox_heur.setSpacing(0)
+        self.vbox_heur.setContentsMargins(20, 20, 20, 20)
+        frame_heur.setLayout(self.vbox_heur)
+
+        hbox.addWidget(frame_alg)
+        hbox.addWidget(frame_heur)
+
+        self.setLayout(hbox)
+
+    def combo_changed(self):
+        global algorithmes
+        print(self.selection_algo.currentText())
+
+        """new = QtWidgets.QComboBox(self)
+        new.addItem("dpll")
+        new.addItem("ennumeration")
+        new.currentTextChanged.connect(self.combo_changed)
+        new.setFixedWidth(200)
+
+        self.vbox_alg.removeWidget(self.cfal)
+        self.vbox_heur.removeWidget(self.cfheu)
+        self.vbox_alg.addWidget(new)
+        self.vbox_heur.addWidget(new)
+        self.vbox_alg.addWidget(self.cfal)
+        self.vbox_heur.addWidget(self.cfheu)
+
+        global_module.algorithmes.append(self.selection_algo.currentText())"""
+
+from PySide2 import QtWidgets
+from copy import deepcopy, copy
+import global_module
+
+class Parametres(QtWidgets.QFrame):
+    def __init__(self, parent, appelant):
+        super().__init__(parent)
+
+        self.appelant = appelant
+
+        algo_label = QtWidgets.QLabel("Algorithme : ")
+        algo_label.setFixedHeight(50)
+        heur_label = QtWidgets.QLabel("Heuristique : ")
+        heur_label.setFixedHeight(50)
+
+        # Algo combo box
+        self.selection_algo = QtWidgets.QComboBox(self)
+        self.selection_algo.setObjectName("selection_algo")
+        self.selection_algo.addItem("dpll")
+        self.selection_algo.addItem("ennumeration")
+        self.selection_algo.currentTextChanged.connect(self.combo_changed)
+        self.selection_algo.setFixedWidth(200)
+
+        # Heuristique combo box
+        self.selection_heuristique = QtWidgets.QComboBox(self)
+        self.selection_heuristique.setObjectName("selection_heuristique")
+        self.selection_heuristique.setFixedWidth(200)
+
+        hbox = QtWidgets.QHBoxLayout()
+
+        self.vbox_alg = QtWidgets.QVBoxLayout()
+        frame_alg = QtWidgets.QFrame()
+
+        self.vbox_heur = QtWidgets.QVBoxLayout()
+        frame_heur = QtWidgets.QFrame()
+
+        self.vbox_alg.addWidget(algo_label)
+        self.vbox_alg.addWidget(self.selection_algo)
+        self.vbox_alg.addWidget(QtWidgets.QFrame())
+        self.vbox_alg.setSpacing(0)
+        self.vbox_alg.setContentsMargins(20, 20, 20, 20)
+        frame_alg.setLayout(self.vbox_alg)
+
+        self.vbox_heur.addWidget(heur_label)
+        self.vbox_heur.addWidget(self.selection_heuristique)
+        self.vbox_heur.addWidget(QtWidgets.QFrame())
+        self.vbox_heur.setSpacing(0)
+        self.vbox_heur.setContentsMargins(20, 20, 20, 20)
+        frame_heur.setLayout(self.vbox_heur)
+
+        hbox.addWidget(frame_alg)
+        hbox.addWidget(frame_heur)
+
+        self.setLayout(hbox)
+
+    def combo_changed(self):
+        global algorithmes
+        print(self.selection_algo.currentText())
+
+
+        global_module.algorithmes.append(self.selection_algo.currentText())

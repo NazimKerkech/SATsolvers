@@ -2,6 +2,7 @@ from PySide2 import QtWidgets
 from PySide2.QtWidgets import QFrame
 from ihm.interfaces_principales.traitements import *
 from ihm.interfaces_principales.home import *
+from ihm.interfaces_principales.parametres import *
 
 
 class MiddleUi(QFrame):
@@ -32,8 +33,9 @@ class MiddleUi(QFrame):
 
         # Interface_principale StackWidget
         self.affichage_frame = QFrame()
-        self.algorithmes_menu = QFrame()
-        self.heuristiques_menu = QFrame()
+        """self.algorithmes_menu = PlAlg(self, self)
+        self.heuristiques_menu = PlHeur(self, self)"""
+        self.parametres_menu = Parametres(self, self)
 
         self.affichage_frame.setLayout(box_onglets)                            # Enrobage des onglets affichage_principal dans une frame
 
@@ -41,8 +43,9 @@ class MiddleUi(QFrame):
 
         self.interface_principale.addWidget(self.home)
         self.interface_principale.addWidget(self.affichage_frame)
-        self.interface_principale.addWidget(self.algorithmes_menu)
-        self.interface_principale.addWidget(self.heuristiques_menu)
+        self.interface_principale.addWidget(self.parametres_menu)
+        """self.interface_principale.addWidget(self.algorithmes_menu)
+        self.interface_principale.addWidget(self.heuristiques_menu)"""
 
         box_middleUi = QtWidgets.QGridLayout()                  # Layout de l'interface principale
         box_middleUi.addWidget(self.interface_principale)
