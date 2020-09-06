@@ -8,79 +8,45 @@ class Parametres(QtWidgets.QFrame):
 
         self.appelant = appelant
 
-        algo_label = QtWidgets.QLabel("Algorithme : ")
-        algo_label.setFixedHeight(50)
-        heur_label = QtWidgets.QLabel("Heuristique : ")
-        heur_label.setFixedHeight(50)
+        layout = QtWidgets.QVBoxLayout()
 
-        # Algo combo box
-        self.selection_algo = QtWidgets.QComboBox(self)
-        self.selection_algo.setObjectName("selection_algo")
-        self.selection_algo.addItem("selectionner un algorithme")
-        self.selection_algo.addItem("dpll")
-        self.selection_algo.addItem("ennumeration")
-        self.selection_algo.currentTextChanged.connect(self.combo_changed)
-        self.selection_algo.setFixedWidth(200)
+        dpll_frame = QtWidgets.QFrame()
+        dpll_frame.setMaximumHeight(100)
+        dpll_layout = QtWidgets.QHBoxLayout()
 
-        # Heuristique combo box
-        self.selection_heuristique = QtWidgets.QComboBox(self)
-        self.selection_heuristique.setObjectName("selection_heuristique")
-        self.selection_heuristique.setFixedWidth(200)
+        self.dpll_check_box = QtWidgets.QCheckBox("DPLL")
+        dpll_layout.addWidget(self.dpll_check_box)
 
-        # Plus algo
-        self.plus_algo = QtWidgets.QPushButton()
-        self.plus_algo.setObjectName("plus_algo")
-        self.plus_algo.setFixedSize(50, 50)
-        self.plus_algo.clicked.connect(self.ajout_algo)
+        heuristiques_layout = QtWidgets.QVBoxLayout()
+        heuristiques_frame = QtWidgets.QFrame()
 
+        self.vsid_check_box = QtWidgets.QCheckBox("VSID")
+        self.mocms_check_box = QtWidgets.QCheckBox("Maximum occurences in clause of minimun size")
 
+        heuristiques_layout.addWidget(self.vsid_check_box)
+        heuristiques_layout.addWidget(self.mocms_check_box)
 
-        hbox = QtWidgets.QHBoxLayout()
+        heuristiques_frame.setLayout(heuristiques_layout)
+        dpll_layout.addWidget(heuristiques_frame)
 
-        self.vbox_alg = QtWidgets.QVBoxLayout()
-        frame_alg = QtWidgets.QFrame()
+        dpll_frame.setLayout(dpll_layout)
 
-        self.vbox_heur = QtWidgets.QVBoxLayout()
-        frame_heur = QtWidgets.QFrame()
+        valid_button = QtWidgets.QPushButton("Valider")
+        valid_button.setObjectName("valid_button")
+        valid_button.setMaximumSize(200, 50)
+        valid_button.clicked.connect(self.validation)
 
-        self.vbox_alg.addWidget(algo_label)
-        self.vbox_alg.addWidget(self.selection_algo)
-        self.vbox_alg.addWidget(self.plus_algo)
-        self.vbox_alg.setSpacing(5)
-        self.vbox_alg.setContentsMargins(20, 20, 20, 20)
-        frame_alg.setLayout(self.vbox_alg)
+        layout.addWidget(dpll_frame, QtCore.Qt.AlignTop)
+        layout.addWidget(valid_button)
 
-        vbgauche = QtWidgets.QVBoxLayout()
-        vbgauche.addWidget(frame_alg)
-        vbgauche.addWidget(QtWidgets.QFrame())
-        frame_gauche = QtWidgets.QFrame()
-        frame_gauche.setLayout(vbgauche)
+        self.setLayout(layout)
 
-        self.vbox_heur.addWidget(heur_label)
-        self.vbox_heur.addWidget(self.selection_heuristique)
-        self.vbox_heur.setSpacing(5)
-        self.vbox_heur.setContentsMargins(20, 20, 20, 20)
-        frame_heur.setLayout(self.vbox_heur)
+    def validation(self):
+        global_module.algo_dico['dpll'] = self.dpll_check_box.isChecked()
+        global_module.dpll_heur_dico['vsid'] = self.vsid_check_box.isChecked()
+        global_module.dpll_heur_dico['mocms'] = self.mocms_check_box.isChecked()
 
-        vbdroite = QtWidgets.QVBoxLayout()
-        vbdroite.addWidget(frame_heur)
-        vbdroite.addWidget(QtWidgets.QFrame())
-        frame_droite = QtWidgets.QFrame()
-        frame_droite.setLayout(vbdroite)
+        #global_module.dpll_graph.add_node(1, Niveau = 0, Rang = 0, Formule = global_module.formule)
 
-        hbox.addWidget(frame_gauche)
-        hbox.addWidget(frame_droite)
-
-        self.setLayout(hbox)
-
-    def combo_changed(self):
-        global algorithmes
-        print(self.selection_algo.currentText())
-        global_module.algorithmes.append(self.selection_algo.currentText())
-
-    def ajout_algo(self):
-        self.vbox_alg.removeWidget(self.plus_algo)
-        self.vbox_alg.addWidget(QtWidgets.QComboBox())
-        self.vbox_alg.addWidget(self.plus_algo)
-
-        self.vbox_heur.addWidget(QtWidgets.QComboBox())
+        #global_module.wind.trameinf.frame_principale.affichage.creation()
+        global_module.wind.trameinf.frame_principale.interface_principale.setCurrentWidget(global_module.wind.trameinf.frame_principale.affichage_frame)

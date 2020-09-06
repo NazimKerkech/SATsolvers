@@ -3,6 +3,7 @@ from PySide2.QtWidgets import QApplication, QWidget, QMainWindow
 from ihm.topui import TopUi
 from ihm.bottomui import BottomUi
 import sys
+import global_module
 
 
 class MainWindow(QMainWindow):
@@ -31,12 +32,16 @@ class MainWindow(QMainWindow):
         buff.setLayout(vbox)
 
         self.setCentralWidget(buff)
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        #self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 
         # Initialisation de la fiche de style qss
         style = open("ihm/stylesheet.qss")
         StyleSheet = style.read()
         self.setStyleSheet(StyleSheet)
+
+        global_module.wind = self
+
+
 
 
 # Instanciation de QApp

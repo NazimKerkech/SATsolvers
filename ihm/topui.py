@@ -2,6 +2,11 @@ import PySide2
 from PySide2 import QtGui, QtWidgets, QtCore
 from PySide2.QtWidgets import QLabel, QPushButton, QFrame, QSizePolicy
 import algorithmes.resolution.dpll, global_module
+import networkx
+import matplotlib.pyplot
+from grave import plot_network
+from grave.style import use_attributes
+
 globals()['state'] = 0
 globals()['titleBar'] = True
 
@@ -22,75 +27,6 @@ class TopUi(QFrame):
         # Barres superieur
         vbox_barresSup = QtWidgets.QVBoxLayout()
 
-        # Barre de titre
-        self.barreDeTitre_frame = QFrame()
-        self.barreDeTitre_frame.setFrameShape(QFrame.NoFrame)
-
-        hbox_title_buttons = QtWidgets.QHBoxLayout()                        # Bouttons
-
-        btn_minimize = QPushButton()                                        # Minimize
-        btn_minimize.setObjectName("btn_minimize")
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(btn_minimize.sizePolicy().hasHeightForWidth())
-        btn_minimize.setSizePolicy(sizePolicy1)
-        btn_minimize.clicked.connect(self.btn_min_clicked)
-        hbox_title_buttons.addWidget(btn_minimize)
-
-        self.btn_maximize_restore = QPushButton()                           # Maximise
-        self.btn_maximize_restore.setObjectName("btn_maximize_restore")
-        self.btn_maximize_restore.setSizePolicy(sizePolicy1)
-        sizePolicy1.setHeightForWidth(self.btn_maximize_restore.sizePolicy().hasHeightForWidth())
-        self.btn_maximize_restore.clicked.connect(self.maximize_restore_clicked)
-        hbox_title_buttons.addWidget(self.btn_maximize_restore)
-
-        btn_close = QPushButton()                                           # Close
-        btn_close.setObjectName("btn_close")
-        btn_close.setSizePolicy(sizePolicy1)
-        btn_close.clicked.connect(self.btn_close_clicked)
-        hbox_title_buttons.addWidget(btn_close)
-
-        hbox_title_buttons.setContentsMargins(0, 0, 0, 0)                   # Layout et frame des bouttons
-
-        title_buttons_frame = QFrame()
-        title_buttons_frame.setFrameShape(QFrame.NoFrame)
-        title_buttons_frame.setLayout(hbox_title_buttons)
-        title_buttons_frame.setMaximumWidth(120)
-        title_buttons_frame.setMinimumWidth(120)
-
-        # FIN BOUTTONS
-
-        # Titre
-
-        self.title = QLabel("\tAssistant graphique pour SAT")
-        self.title.setFixedHeight(35)
-
-        hbox_title_title = QtWidgets.QHBoxLayout()
-        hbox_title_title.setContentsMargins(0, 0, 0, 0)
-        hbox_title_title.setSpacing(0)
-
-        hbox_title_title.addWidget(self.title)
-
-        title_title_frame = QFrame()
-        title_title_frame.setFrameShape(QFrame.NoFrame)
-        title_title_frame.setLayout(hbox_title_title)
-
-        # FIN TITRE
-
-        hbox_title_bar = QtWidgets.QHBoxLayout()                            # Layout de la barre des titres
-
-        hbox_title_bar.addWidget(title_title_frame)
-        hbox_title_bar.addWidget(title_buttons_frame)
-
-        hbox_title_bar.setContentsMargins(0, 0, 0, 0)                           # Configuration du layout
-        vbox_barresSup.setSpacing(0)
-
-        self.barreDeTitre_frame.setLayout(hbox_title_bar)                   # Frame de la barre des titres
-        self.barreDeTitre_frame.setMinimumHeight(35)
-        self.barreDeTitre_frame.setMaximumHeight(35)
-        vbox_barresSup.addWidget(self.barreDeTitre_frame)
-
-        # FIN DE LA BARRE DES TITRES
 
         # BARRE DES ACTIONS :
 
@@ -254,8 +190,13 @@ class TopUi(QFrame):
         global formule
         global sdp
         global algorithmes
-        print(global_module.algorithmes)
         #if al
-        algorithmes.resolution.dpll.dpll(global_module.formule, self.mainWindow)
+        algorithmes.resolution.dpll.dpll(global_module.formule)
         print(global_module.sdp)
-        self.mainWindow.trameinf.frame_principale.affichage.sdp.append(global_module.sdp.__str__())
+        #self.mainWindow.trameinf.frame_principale.affichage.sdp.append(global_module.sdp.__str__())
+
+        """art = plot_network(global_module.graph, ax=global_module.ax, node_style=use_attributes(),
+                           edge_style=use_attributes())"""
+        #matplotlib.pyplot.show()
+
+        self.mainWindow.trameinf.frame_principale.affichage.creation()

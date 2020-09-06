@@ -56,6 +56,18 @@ class Formule:
         d = ""
         for c in self.clauses:
             d = d + " " + c.__str__()
+
+        d = d.replace('} {', ') AND (')
+        d = d.replace('{', '(')
+        d = d.replace('}', ')')
+        d = d.replace(', ', ' OR ')
+        d = d.replace('-', 'NOT ')
+
+        for i in range (1, self.nb_atomes + 1):
+            d = d.replace(' '+str(i)+' ', ' '+chr(i + ord('A') - 1)+' ')
+            d = d.replace('('+str(i)+' ', '('+chr(i + ord('A') - 1)+' ')
+            d = d.replace(' '+str(i)+')', ' '+chr(i + ord('A') - 1)+')')
+
         return d
 
     # Cette methode consiste a affecter un litteral -a- a vrai
