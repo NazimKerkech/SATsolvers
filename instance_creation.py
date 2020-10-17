@@ -39,6 +39,18 @@ class Clause:
                 return True
         return False
 
+    def est_sat(self, x):
+        for litteral in self.litteraux:
+            if litteral < 0:
+                litteral = litteral * (-1)
+                if x[litteral] == 1:
+                    continue
+                else:
+                    return True
+            if x[litteral] == 1:
+                return True
+        return False
+
 
 class Formule:
     clauses = set()
@@ -63,7 +75,7 @@ class Formule:
         d = d.replace(', ', ' OR ')
         d = d.replace('-', 'NOT ')
 
-        for i in range (1, self.nb_atomes + 1):
+        for i in range (1, 27):
             d = d.replace(' '+str(i)+' ', ' '+chr(i + ord('A') - 1)+' ')
             d = d.replace('('+str(i)+' ', '('+chr(i + ord('A') - 1)+' ')
             d = d.replace(' '+str(i)+')', ' '+chr(i + ord('A') - 1)+')')
@@ -129,4 +141,18 @@ class Formule:
                     clause.add(int(lit))
                 nova_clause = Clause(clause)
                 clauses_set.add(nova_clause)
+
+        inst.close()
         return clauses_set
+
+    def est_satisfaite_par(self, x):
+        v = []
+        for lit in x:
+            if lit > 0:
+                v[lit] = 1
+            else:
+                v[-lit] = 0
+        for clause in self.clauses:
+            if not clause.est_sat(x):
+                return False
+        return True

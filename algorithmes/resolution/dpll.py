@@ -1,3 +1,5 @@
+import os
+import timeit
 from copy import deepcopy
 import instance_creation
 import algorithmes.resolution.propagation_unitaire as pu
@@ -21,7 +23,6 @@ def dpll(f, niveau=0, rang=0):
                                       decision=l,
                                       position=((-2**(niveau-1) + rang + 0.5)*2**(4-niveau), -niveau))
     if niveau:
-        print(niveau, rang)
         d = global_module.dpll_graph.nodes[2**(niveau-1) + ((rang- (rang%2))/2)]['decision']
         pater = 2**(niveau-1) + ((rang- (rang%2))/2)
         soit = 2 ** niveau + rang
@@ -47,3 +48,17 @@ def dpll(f, niveau=0, rang=0):
     f2.clauses |= {instance_creation.Clause({-l})}
 
     return dpll(f1, niveau+1, 2*rang) or dpll(f2, niveau+1, 2*rang+1)
+
+def main(nom_fichier):
+
+    file = open(nom_fichier, 'r')
+    formule = instance_creation.Formule(os.path.realpath(file.name))
+
+    truc = dpll(formule)
+    file.close()
+    return truc
+
+if __name__ == '__main__':
+    t = timeit.Timer(stmt="main(\"/home/thedoctor/Documents/Python/PycharmProjects/SN2/UF50-218-1000/uf50-011.cnf\")", globals=globals())
+    print(t.timeit(1000))
+    #main()

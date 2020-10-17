@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
+
+from ihm.interfaces_principales.traitements_directory.cdcl_traitement import Cdcl_traitements
 from ihm.interfaces_principales.traitements_directory.dpll_traitement import Dpll_traitements
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -26,7 +28,11 @@ class Traitements(QFrame):
 
     def creation(self):
         if global_module.algo_dico['dpll']:
-            if global_module.dpll_heur_dico['vsid']:
-                self.dpll_vsid_frame = Dpll_traitements(heuristique='vsid')
-                self.layout.addWidget(self.dpll_vsid_frame)
-                self.layout = QtWidgets.QHBoxLayout()
+            self.dpll_frame = Dpll_traitements(algorithme='dpll', heuristique='vsid')
+            self.layout.addWidget(self.dpll_frame)
+            #self.layout = QtWidgets.QHBoxLayout()
+
+        if global_module.algo_dico['cdcl']:
+            self.cdcl_frame = Cdcl_traitements(algorithme='cdcl', heuristique='vsid')
+            self.layout.addWidget(self.cdcl_frame)
+            #self.layout = QtWidgets.QHBoxLayout()

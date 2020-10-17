@@ -22,16 +22,20 @@ import plotly.graph_objects as go
 import random
 
 class Dpll_traitements(QFrame):
-    def __init__(self, heuristique, parent=None):
+    def __init__(self, algorithme, heuristique, parent=None):
         super().__init__(parent)
 
+        self.algorithme = algorithme
         self.heuristique = heuristique
 
         self.layout = QtWidgets.QVBoxLayout()
 
+        self.label = QtWidgets.QLabel("Traitements de DPLL")
+
         self.graph = DPLLMatplotlibWidget(self.heuristique)
         self.infos = Infos_frame()
 
+        self.layout.addWidget(self.label)
         self.layout.addWidget(self.graph)
         self.layout.addWidget(self.infos)
 
@@ -94,9 +98,14 @@ class DPLLMatplotlibWidget(QtWidgets.QWidget):
                         layout=lambda x: nx.get_node_attributes(global_module.dpll_graph, 'position'),
                         ax=self.ax,
                         node_style=use_attributes(),
-                        edge_style=use_attributes())
+                        edge_style=use_attributes(),
+                        edge_label_style={'font_size': 2,'font_weight': .5,'font_color': 'r'})
 
         self.art.draw
+        networkx.draw_networkx_edge_labels(G=global_module.dpll_graph,
+                                           pos=nx.get_node_attributes(global_module.dpll_graph, 'position'),
+                                           ax=self.ax,
+                                           edge_labels=nx.get_edge_attributes(global_module.dpll_graph, 'decision'))
         self.art.set_picker(10)
 
         self.canvas = FigureCanvas(self.fig)
@@ -187,7 +196,6 @@ def hilighter(event):
     # if we did not hit a node, bail
     if not hasattr(event, 'nodes') or not event.nodes:
         return
-    print("here")
     # pull out the graph,
     global_module.dpll_graph = event.artist.graph
 
@@ -215,8 +223,8 @@ def hilighter(event):
     decision = networkx.get_node_attributes(global_module.dpll_graph, 'decision')[noeud]
     niveau = networkx.get_node_attributes(global_module.dpll_graph, 'Niveau')[noeud]
 
-    global_module.wind.trameinf.frame_principale.affichage.dpll_vsid_frame.infos.formule_label.clear()
-    global_module.wind.trameinf.frame_principale.affichage.dpll_vsid_frame.infos.formule_label.append(formule.__str__())
-    global_module.wind.trameinf.frame_principale.affichage.dpll_vsid_frame.infos.propagation_label.setText(propagation.__str__())
-    global_module.wind.trameinf.frame_principale.affichage.dpll_vsid_frame.infos.niveau_label.setText(niveau.__str__())
-    global_module.wind.trameinf.frame_principale.affichage.dpll_vsid_frame.infos.decision_label.setText(decision.__str__())
+    global_module.wind.trameinf.frame_principale.affichage.dpll_frame.infos.formule_label.clear()
+    global_module.wind.trameinf.frame_principale.affichage.dpll_frame.infos.formule_label.append(formule.__str__())
+    global_module.wind.trameinf.frame_principale.affichage.dpll_frame.infos.propagation_label.setText(propagation.__str__())
+    global_module.wind.trameinf.frame_principale.affichage.dpll_frame.infos.niveau_label.setText(niveau.__str__())
+    global_module.wind.trameinf.frame_principale.affichage.dpll_frame.infos.decision_label.setText(decision.__str__())

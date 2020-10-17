@@ -1,7 +1,9 @@
+import copy
+
 import PySide2
 from PySide2 import QtGui, QtWidgets, QtCore
 from PySide2.QtWidgets import QLabel, QPushButton, QFrame, QSizePolicy
-import algorithmes.resolution.dpll, global_module
+import algorithmes.resolution.dpll, global_module, algorithmes.resolution.cdcl_SN3.cdcl
 import networkx
 import matplotlib.pyplot
 from grave import plot_network
@@ -191,7 +193,10 @@ class TopUi(QFrame):
         global sdp
         global algorithmes
         #if al
-        algorithmes.resolution.dpll.dpll(global_module.formule)
+        if global_module.algo_dico['dpll'] == True:
+            algorithmes.resolution.dpll.dpll(copy.deepcopy(global_module.formule))
+        if global_module.algo_dico['cdcl'] == True:
+            algorithmes.resolution.cdcl_SN3.cdcl.cdcl(copy.deepcopy(global_module.formule))
         print(global_module.sdp)
         #self.mainWindow.trameinf.frame_principale.affichage.sdp.append(global_module.sdp.__str__())
 
