@@ -57,6 +57,5 @@ class MyTestCase(unittest.TestCase):
             if i == 100:
                 break
 
-
 if __name__ == '__main__':
     unittest.main()
